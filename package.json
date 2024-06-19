@@ -1,7 +1,7 @@
 {
+  "homepage": "https://kapoorayaan.github.io/Youtube-Clone",
   "name": "namaste-youtube",
   "version": "0.1.0",
-  "homepage": "https://kapoorayaan.github.io/Youtube-Clone",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
