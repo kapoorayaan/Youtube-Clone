@@ -2,11 +2,27 @@ import React, { useEffect, useState } from "react";
 import { toggleMenu } from "../utils/AppSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { ytSearchApi } from "../utils/Constants";
 
 const Head = () => {
+  const [suggestions, setsuggestions] = useState([]);
+  const [searchText, setsearchText] = useState("");
+  const [showSuggestion, setshowSuggestion] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => getSearchSuggestion(), 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchText]);
   const dispatchEvent = useDispatch();
   const toggleMenuHandler = () => {
     dispatchEvent(toggleMenu());
+  };
+  const getSearchSuggestion = async () => {
+    const data = await fetch(ytSearchApi + searchText);
+    const json = await data.json();
+    //console.log(json);
+    setsuggestions(json[1]);
   };
 
   return (
@@ -27,17 +43,40 @@ const Head = () => {
         </a>
       </div>
       <div className="col-span-10 px-20">
-        <input
-          type="text"
-          placeholder="Search"
-          className="w-1/2 border border-gray-400 shadow p-2 rounded-l-full"
-        />
-        <button
-          className="border border-gray-400 p-2 rounded-e-full"
-          value="Search"
-        >
-          🔍
-        </button>
+        <div>
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-1/2 border border-gray-400 shadow p-2 rounded-l-full"
+            value={searchText}
+            onChange={(e) => {
+              setsearchText(e.target.value);
+            }}
+            onFocus={() => {
+              setshowSuggestion(true);
+            }}
+            onBlur={() => {
+              setshowSuggestion(false);
+            }}
+          />
+          <button
+            className="border border-gray-400 p-2 rounded-e-full"
+            value="Search"
+          >
+            🔍
+          </button>
+        </div>
+        {showSuggestion && (
+          <div className="fixed bg-white py-2 px-5 w-96 shadow rounded-lg border border-gray-400">
+            <ul>
+              {suggestions.map((s) => (
+                <li key={s} className="py-1 shadow-sm hover:bg-slate-100">
+                  🔍{s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className="">

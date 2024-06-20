@@ -11,12 +11,12 @@ const VidCard = ({ info }) => {
       <ul>
         <li className="font-bold py-2">{info?.snippet?.title}</li>
         <li>
-          <span className="font-bold">Channel- </span>
+          <span className="font-bold"> </span>
           {info?.snippet?.channelTitle}
         </li>
         <li>
-          <span className="font-bold">Views- </span>
-          {info?.statistics.viewCount}
+          <span className="font-bold"></span>
+          {info?.statistics.viewCount} views
         </li>
       </ul>
     </div>
