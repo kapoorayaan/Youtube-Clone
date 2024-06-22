@@ -24,7 +24,7 @@ const Comments = () => {
     //console.log(json.items);
   };
   return (
-    <div className="m-5 p-2">
+    <div className="m-1 p-1">
       <h1 className="font-bold text-2xl"> Comments</h1>
       {comments.map((item) => (
         <CommentCard key={item?.id} info={item} />

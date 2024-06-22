@@ -47,7 +47,7 @@ const Head = () => {
           <input
             type="text"
             placeholder="Search"
-            className="w-1/2 border border-gray-400 shadow p-2 rounded-l-full"
+            className="w-[57%] border border-gray-400 shadow p-2 rounded-l-full"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
@@ -67,7 +67,7 @@ const Head = () => {
           </button>
         </div>
         {showSuggestion && (
-          <div className="fixed bg-white py-2 px-5 w-96 shadow rounded-lg border border-gray-400">
+          <div className="fixed bg-white py-2  w-96 shadow rounded-lg border border-gray-400">
             <ul>
               {suggestions.map((s) => (
                 <li key={s} className="py-1 shadow-sm hover:bg-slate-100">
@@ -79,14 +79,16 @@ const Head = () => {
         )}
       </div>
 
-      <div className="">
+      <div>
         <img
           className="h-12 "
           alt="user"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtRs_rWILOMx5-v3aXwJu7LWUhnPceiKvvDg&s"
         ></img>
       </div>
-      <h1 className=" mx-1 py-3 ">Ayaan Kapoor</h1>
+      <h1 className="  py-3 items-center ml-[-64px] mr-[-69px] ">
+        Ayaan Kapoor
+      </h1>
     </div>
   );
 };
